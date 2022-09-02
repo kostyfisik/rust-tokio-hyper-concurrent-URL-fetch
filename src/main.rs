@@ -59,7 +59,10 @@ async fn main() {
 fn create_flow_list(flow_n: usize) -> Vec<hyper::Uri> {
     let mut vec = Vec::new();
     for n in 1..flow_n + 1 {
-        let uri_str = "https://jsonplaceholder.typicode.com/photos/".to_string() + &n.to_string();
+        let max_index = 5000;
+        let index = n % max_index;
+        let uri_str =
+            "https://jsonplaceholder.typicode.com/photos/".to_string() + &index.to_string();
         let uri = uri_str.parse::<hyper::Uri>().unwrap();
         vec.push(uri.clone());
     }

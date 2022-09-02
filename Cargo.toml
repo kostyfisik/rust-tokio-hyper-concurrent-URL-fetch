@@ -2,12 +2,23 @@
 name = "hello-rust"
 version = "0.1.0"
 edition = "2021"
+default-run = "fetch-concurrent"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "fetch-concurrent"
+path = "src/main.rs"
+
+[[bin]]
+name = "hello"
+path = "src/hello.rs"
+
+
 [dependencies]
+bytes = "1"
 futures = "0.3.17"
 hyper-tls = "0.5"
-hyper = { version = "0.14.13", features = ["client", "http1", "tcp"] }
+hyper = { version = "0.14.13", features = ["full"] }
 tokio = { version = "1.12.0", features = ["full"] }
 clap = { version = "3.2.18", features = ["derive"] }
