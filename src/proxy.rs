@@ -1,26 +1,22 @@
 #![deny(warnings)]
 
-use hyper::client::HttpConnector;
 use hyper::service::{make_service_fn, service_fn};
 use hyper::{Body, Client, Request, Response, Server};
 use std::convert::Infallible;
 use std::net::SocketAddr;
 
-static mut CLIENT: Client<HttpConnector> = None;
-
 async fn hello_world(_req: Request<Body>) -> Result<Response<Body>, Infallible> {
-    let URI = "http://httpbin.org/ip".parse::<hyper::Uri>().unwrap();
-    let _resp = CLIENT.get(URI).await;
+    let client = Client::new();
+    let uri = "http://localhost:3000".parse::<hyper::Uri>().unwrap();
+    let _resp = client.get(uri).await;
     // println!("Response: {:?}", _resp);
-    Ok(Response::new("Hello, World".into()))
+    Ok(Response::new(_resp.unwrap().into_body()))
+    // Ok(Response::new("Hello, World".into()))
 }
 
 #[tokio::main]
 async fn main() {
-    CLIENT = Client::new();
-
-    // We'll bind to 127.0.0.1:3000
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
 
     // A `Service` is needed for every connection, so this
     // creates one from our `hello_world` function.

@@ -21,6 +21,7 @@ async fn handle(req: Request<Body>) -> Result<Response<Body>, Infallible> {
 
 #[tokio::main]
 async fn main() {
+    let client = Client::new();
     let bind_addr = "127.0.0.1:8000";
     let addr: SocketAddr = bind_addr.parse().expect("Could not parse ip:port.");
 
