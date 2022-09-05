@@ -22,6 +22,10 @@ path = "src/proxy.rs"
 name = "rproxy"
 path = "src/rproxy.rs"
 
+[[bin]]
+name = "rproxy-typicode"
+path = "src/rproxy-typicode.rs"
+
 
 [dependencies]
 log = "0.4.11"

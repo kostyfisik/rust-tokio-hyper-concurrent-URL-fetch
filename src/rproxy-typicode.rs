@@ -79,7 +79,7 @@ async fn main() {
     let rp = std::sync::Arc::new(ReverseProxy {
         client,
         scheme: "https".to_owned(),
-        host: "https://jsonplaceholder.typicode.com/photos".to_owned(),
+        host: "jsonplaceholder.typicode.com".to_owned(),
     });
 
     let make_svc = make_service_fn(move |_conn| {
@@ -100,4 +100,3 @@ async fn main() {
         std::process::abort();
     }
 }
-
