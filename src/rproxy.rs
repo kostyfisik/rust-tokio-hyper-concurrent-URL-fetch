@@ -1,6 +1,5 @@
 use hyper::service::{make_service_fn, service_fn};
 use hyper::{Body, Client, Request, Response, Server};
-use hyper_tls::HttpsConnector;
 use std::net::SocketAddr;
 
 /// HTTP headers to strip, a whitelist is probably a better idea
@@ -42,7 +41,7 @@ impl std::error::Error for ReverseProxyError {}
 struct ReverseProxy {
     scheme: String,
     host: String,
-    client: Client<HttpsConnector<hyper::client::HttpConnector>>,
+    client: Client<hyper::client::HttpConnector>,
 }
 
 impl ReverseProxy {
@@ -73,13 +72,12 @@ async fn main() {
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
     let addr = SocketAddr::from(([0, 0, 0, 0], 8000));
 
-    let https = HttpsConnector::new();
-    let client = Client::builder().build(https);
+    let client = Client::new();
 
     let rp = std::sync::Arc::new(ReverseProxy {
         client,
-        scheme: "https".to_owned(),
-        host: "www.fpcomplete.com".to_owned(),
+        scheme: "http".to_owned(),
+        host: "localhost:3000".to_owned(),
     });
 
     let make_svc = make_service_fn(move |_conn| {
