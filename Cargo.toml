@@ -24,6 +24,8 @@ path = "src/rproxy.rs"
 
 
 [dependencies]
+log = "0.4.11"
+env_logger = "0.8.1"
 bytes = "1"
 hyper-reverse-proxy = "0.5"
 futures = "0.3.17"
