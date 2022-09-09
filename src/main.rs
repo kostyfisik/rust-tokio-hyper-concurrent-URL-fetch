@@ -61,9 +61,45 @@ fn create_flow_list(flow_n: usize) -> Vec<hyper::Uri> {
     for n in 1..flow_n + 1 {
         let max_index = 5000;
         let index = n % max_index;
-        let uri_str =
+        let mut uri_str =
             "https://jsonplaceholder.typicode.com/photos/".to_string() + &index.to_string();
-        let uri = uri_str.parse::<hyper::Uri>().unwrap();
+        let mut uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://api.chucknorris.io/jokes/random".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://api.kanye.rest".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://dog.ceo/api/breeds/image/random".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://coffee.alexflipnote.dev/random.json".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://geek-jokes.sameerkumar.website/api?format=json".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://uselessfacts.jsph.pl/random.json".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://randomfox.ca/floof/".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://namey.muffinlabs.com/name.json".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
+        vec.push(uri.clone());
+
+        uri_str = "https://api.whatdoestrumpthink.com/api/v1/quotes/random".to_string();
+        uri = uri_str.parse::<hyper::Uri>().unwrap();
         vec.push(uri.clone());
     }
     vec
